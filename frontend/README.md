@@ -7,3 +7,5 @@ resources collected for the project
 started working on Home page
 
 logo and search completed
+
+user profile side completed

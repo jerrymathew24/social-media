@@ -25,3 +25,7 @@
     padding: 4px;
     color: white;
 }
+
+.s-icon:hover{
+    cursor: pointer;
+}
