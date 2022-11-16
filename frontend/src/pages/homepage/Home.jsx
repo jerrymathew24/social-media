@@ -1,5 +1,5 @@
 import React from 'react'
-import ProfileSide from '../../components/profile/ProfileSide'
+import ProfileSide from '../../components/profileSide/ProfileSide'
 import './Home.css'
 
 const Home = () => {
