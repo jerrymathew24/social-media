@@ -20,4 +20,6 @@ posts completed
 
 right side completed
 [icons and trends]
+
+leftSide of profile completed
    
