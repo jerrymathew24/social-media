@@ -17,4 +17,7 @@ post sharing part completed
 
 posts completed
 [raw data added]
+
+right side completed
+[icons and trends]
    
