@@ -14,4 +14,7 @@ followers side completed
 
 post sharing part completed
 [ useState and useRef is used to bring a new image to the app.]
+
+posts completed
+[raw data added]
    

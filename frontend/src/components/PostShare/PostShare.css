@@ -1,10 +1,12 @@
 .PostShare{
 display: flex;
-gap: 1rem;
+gap: 2rem;
 background-color: var(--cardColor);
 padding: 1rem;
 border-radius: 1rem;
 }
+
+
 
 .PostShare>img{
     border-radius: 50%;
@@ -35,13 +37,13 @@ border-radius: 1rem;
 
 .option{
     padding: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 10px;
+    padding-left: 5px;
+    padding-right: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 12px;
+    
 }
 
 .option:hover{

@@ -25,7 +25,7 @@ const PostShare = () => {
     
     <div className="PostShare">
         <img src={ProfileImage} alt="" />
-        <div>
+        <div >
             <input type="text" placeholder="What's happening" />
             <div className="postOptions">
             <div className="option"
