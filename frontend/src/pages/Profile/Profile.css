@@ -5,3 +5,8 @@
     gap: 1rem;
 }
 
+.ProfileCenter{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
