@@ -26,4 +26,12 @@ leftSide of profile completed
 Profile page completed
 
 Login and Signup completed
+
+@mantine/core is used to create info modal and share modal
+
+Frontend Completed
+
+
+
+
    
