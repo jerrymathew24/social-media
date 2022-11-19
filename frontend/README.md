@@ -24,4 +24,6 @@ right side completed
 leftSide of profile completed
 
 Profile page completed
+
+Login and Signup completed
    
