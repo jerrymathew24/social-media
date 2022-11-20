@@ -8,4 +8,17 @@ folders for routes, controllers and modals created
 
 server is up and running
 
+using thunder client to check the api
+
+hashing of passwords done by bcrypt
+
+registerUser functionality done
+
+loginUser functionality done
+
+
+
+
+
+
  
