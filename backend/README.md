@@ -16,6 +16,10 @@ registerUser functionality done
 
 loginUser functionality done
 
+get user done
+
+update user done
+
 
 
 
