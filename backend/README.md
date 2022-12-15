@@ -26,6 +26,14 @@ follow a user done
 
 unfollow a user done
 
+post model created
+
+post Route created
+
+create post done
+
+get post done
+
 
 
 
