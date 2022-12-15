@@ -20,6 +20,9 @@ get user done
 
 update user done
 
+delete user completed
+
+follow a user done
 
 
 
