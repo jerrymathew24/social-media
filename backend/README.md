@@ -37,3 +37,5 @@ get post done
 update a post
 
 delete a post
+
+like and dislike post
