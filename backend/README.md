@@ -34,10 +34,6 @@ create post done
 
 get post done
 
+update a post
 
-
-
-
-
-
- 
+delete a post
