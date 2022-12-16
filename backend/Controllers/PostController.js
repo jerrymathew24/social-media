@@ -1,4 +1,5 @@
 import PostModel from "../Models/postModel.js";
+import UserModel from "../Models/userModel.js";
 import mongoose from "mongoose";
 
 //create post
@@ -66,25 +67,61 @@ export const deletePost = async (req, res) => {
 //like and dislike a post
 
 export const likePost = async (req, res) => {
-    const id = req.params.id
-    const { userId } = req.body
+    const id = req.params.id;
+    const { userId } = req.body;
 
     try {
+        const post = await PostModel.findById(id);
 
-        const post = await PostModel.findById(id)
+        if (!post.likes.includes(userId)) {
+            await post.updateOne({ $push: { likes: userId } });
+            res.status(200).json("Post Liked");
+        } else {
+            await post.updateOne({ $pull: { likes: userId } });
+            res.status(200).json("Post Disliked");
+        }
+    } catch (error) {
+        res.status(500).json(error);
+    }
+};
 
-        if (!post.likes.includes(userId)) 
-        {
-            await post.updateOne({ $push: { likes: userId } })
-            res.status(200).json("Post Liked")
-        }
-        else
-        {
-            await post.updateOne({ $pull: { likes: userId } })
-            res.status(200).json("Post Disliked")
-        }
+// Get timeline post
+
+export const getTimelinePosts = async (req, res) => {
+    const userId = req.params.id;
+
+    try {
+        const currentUserPosts = await PostModel.find({ userId: userId });
+        const followingPosts = await UserModel.aggregate([
+            {
+                $match: {
+                    _id: new mongoose.Types.ObjectId(userId),
+                },
+            },
+            {
+                $lookup: {
+                    from: "posts",
+                    localField: "following",
+                    foreignField: "userId",
+                    as: "followingPosts",
+                },
+            },
+            {
+                $project: {
+                    followingPosts: 1,
+                    _id: 0,
+                },
+            },
+        ]);
+        res
+            .status(200)
+            .json(currentUserPosts.concat(...followingPosts[0].followingPosts)
+                .sort((a, b) => {
+                    return b.createdAt - a.createdAt
+                })
+            )
 
     } catch (error) {
         res.status(500).json(error);
     }
-}
+};

@@ -24,7 +24,7 @@ delete user completed
 
 follow a user done
 
-unfollow a user done
+unFollow a user done
 
 post model created
 
@@ -39,3 +39,5 @@ update a post
 delete a post
 
 like and dislike post
+
+getTimelinePosts added
