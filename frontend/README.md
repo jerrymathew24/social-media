@@ -36,5 +36,31 @@ Improved Authentication using useState hook
 
 
 
+implementing __REDUX__
+(dispatch hook added)
 
-   
+actions(login, signup) are called in auth.jsx
+
+auth actions(login, signup) are made in actions folder
+
+ACTION types are created in authAction(with dispatch )
+
+axios is installed 
+(to make request to the server)
+
+api(AuthApi) calling is done in authActions.js
+
+API folder is made and end points are created
+
+reducer is made (AuthReducer)
+(all the actions are included in the reducer)
+(all data are setup to be stored in the local storage)
+
+combineReducers - added to combine all the reducers
+(reducers/index.js)
+
+store is made and all the states are stored
+
+
+
+ 

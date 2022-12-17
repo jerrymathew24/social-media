@@ -2,16 +2,20 @@ import React from "react";
 import "./Auth.css";
 import Logo from "../../img/logo.png";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { logIn, signUp } from "../../api/AuthRequest";
 
 const Auth = () => {
   const [isSignUp, setIsSignUp] = useState(true);
+
+  const dispatch = useDispatch();
 
   const [data, setData] = useState({
     firstname: "",
     lastname: "",
     username: "",
     password: "",
-    confirmpass: ""
+    confirmpass: "",
   });
 
   const [confirmPass, setConfirmPass] = useState(true);
@@ -20,28 +24,28 @@ const Auth = () => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e)=> {
-    e.preventDefault()
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-    if(isSignUp)
-    {
-        if(data.password !== data.confirmpass) 
-        {
-            setConfirmPass(false)
-        }
+    if (isSignUp) {
+      data.password === data.confirmpass
+        ? dispatch(signUp(data))
+        : setConfirmPass(false);
+    } else {
+      dispatch(logIn(data));
     }
-  }
+  };
 
-  const resetForm = ()=> {
-    setConfirmPass(true)
+  const resetForm = () => {
+    setConfirmPass(true);
     setData({
-        firstname: "",
-        lastname: "",
-        username: "",
-        password: "",
-        confirmpass: "",
-    })
-  }
+      firstname: "",
+      lastname: "",
+      username: "",
+      password: "",
+      confirmpass: "",
+    });
+  };
 
   return (
     <div className="Auth">
@@ -54,7 +58,7 @@ const Auth = () => {
       </div>
       {/* Right side */}
       <div className="a-right">
-        <form className="infoForm authForm" onSubmit={handleSubmit} >
+        <form className="infoForm authForm" onSubmit={handleSubmit}>
           <h3>{isSignUp ? "Sign Up" : "Log In"}</h3>
 
           {isSignUp && (
@@ -65,7 +69,7 @@ const Auth = () => {
                 className="infoInput"
                 name="firstName"
                 onChange={handleChange}
-                value = {data.firstname}
+                value={data.firstname}
               />
               <input
                 type="text"
@@ -73,7 +77,7 @@ const Auth = () => {
                 className="infoInput"
                 name="lastName"
                 onChange={handleChange}
-                value = { data.lastname}
+                value={data.lastname}
               />
             </div>
           )}
@@ -85,7 +89,7 @@ const Auth = () => {
               className="infoInput"
               name="userName"
               onChange={handleChange}
-              value = {data.username}
+              value={data.username}
             />
           </div>
           <div className="">
@@ -95,7 +99,7 @@ const Auth = () => {
               className="infoInput"
               name="password"
               onChange={handleChange}
-              value = {data.password}
+              value={data.password}
             />
             {isSignUp && (
               <input
@@ -104,7 +108,7 @@ const Auth = () => {
                 className="infoInput"
                 name="confirmpass"
                 onChange={handleChange}
-                value = {data.confirmpass}
+                value={data.confirmpass}
               />
             )}
           </div>
@@ -124,7 +128,10 @@ const Auth = () => {
           <div className="">
             <span
               style={{ fontSize: "12px", cursor: "pointer" }}
-              onClick={() => {setIsSignUp((prev) => !prev);  resetForm()}}
+              onClick={() => {
+                setIsSignUp((prev) => !prev);
+                resetForm();
+              }}
             >
               {isSignUp
                 ? "Already have an account. Login!"
