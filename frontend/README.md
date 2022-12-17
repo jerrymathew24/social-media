@@ -31,6 +31,9 @@ Login and Signup completed
 
 Frontend Completed
 
+Improved Authentication using useState hook
+(In Auth page Login and signup are connected and default behavior is achieved)
+
 
 
 
