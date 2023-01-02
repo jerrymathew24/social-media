@@ -13,12 +13,17 @@
     justify-content: center;
 }
 
+
+.a-left{
+    gap: 2rem;
+}
+
 .a-left>img{
     width: 4rem;
     height: 4rem;
 }
 
-.WebName>h1{
+.WebName h1{
     font-size: 3rem;
     background-color: red;
 
@@ -26,13 +31,14 @@
 /* Creating the gradient */
 background-image: var(--buttonBg);
 background-size: 100%;
+background-repeat: repeat;
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
 -moz-background-clip: text;
 -moz-text-fill-color:transparent ;
 }
 
-.WebName>h6{
+.WebName h6{
     font-size: 0.85rem;
 }
 
@@ -41,10 +47,11 @@ background-size: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
+    gap: 3rem;
 }
 
 .infoInput{
+    width: 170px;
     border: none;
     outline: none;
     background-color: var(--inputColor);
@@ -67,6 +74,7 @@ background-size: 100%;
 }
 
 .authForm{
+    width: 450px;
     background-color: var(--cardColor);
     border-radius: 1rem;
     padding: 1rem;
@@ -76,4 +84,19 @@ background-size: 100%;
     width: 100%;
     align-items: center;
     justify-content: center;
+}
+
+
+@media screen and (max-width:800px) {
+    .infoForm{
+        width: 100%;
+        
+    }
+
+    .infoInput{
+        width: 30px;
+        /* display: flex; */
+        flex-direction: column;
+        
+    }
 }

@@ -1,6 +1,4 @@
-import { FaLessThanEqual } from "react-icons/fa";
-
-const authReducer = (state = { authData: null, loading: FaLessThanEqual, error: false }, action) => {
+const authReducer = (state = { authData: null, loading: false,   error: false }, action) => {
 
 
     switch (action.type) {
