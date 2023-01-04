@@ -1,27 +1,26 @@
 .Home{
-    position: relative;
-    display: grid;
-    grid-template-columns: 18rem auto 20rem;
-    gap: 1rem;
+  position: relative;
+  display: grid;
+  grid-template-columns: 18rem auto 20rem;
+  gap: 1rem;
 }
 
-
 @media screen and (max-width:1200px) {
+  .Home{
+   
+   grid-template-columns: 27% 50% 10rem;
+   overflow-y: scroll;
+  }
+  
+}
+@media screen and (max-width:768px){
     .Home{
-     
-     grid-template-columns: 35% 50% 20rem;
-     overflow-y: scroll;
+      grid-template-columns: 1fr;
+
     }
-    
-  }
-  @media screen and (max-width:768px){
-      .Home{
-        grid-template-columns: 1fr;
-  
-      }
-  
-      .Home::-webkit-scrollbar{
-        display: none;
-  
-      }
-  }
+
+    .Home::-webkit-scrollbar{
+      display: none;
+
+    }
+}

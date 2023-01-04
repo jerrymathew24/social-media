@@ -1,6 +1,6 @@
 import React from 'react'
 import Cover from '../../img/cover.jpg'
-import Profile from '../../img/profileImg.jpg'
+import Profile from '../../img/dj.jpg'
 import './ProfileCard.css'
 
 const ProfileCard = () => {

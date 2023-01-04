@@ -1,6 +1,6 @@
 import "./App.css";
-import Auth from "./pages/Auth/Auth";
-import Home from "./pages/homepage/Home";
+import Auth from "./pages/Auth/Auth.jsx";
+import Home from "./pages/homepage/Home.jsx";
 import Profile from "./pages/Profile/Profile";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";

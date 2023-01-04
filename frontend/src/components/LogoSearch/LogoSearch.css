@@ -2,6 +2,11 @@
     display: flex;
     gap: 0.75rem;
 }
+.Logo{
+    width: 2.4rem;
+    border-radius: 50%;
+    
+}
 
 .Search{
     display: flex;
@@ -20,7 +25,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(106.23deg, #f99827, #f95f35 100%);
+    background: linear-gradient(106.23deg, #1fd0fc, #0362a6 100%);
     border-radius: 5px;
     padding: 4px;
     color: white;

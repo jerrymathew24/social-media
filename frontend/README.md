@@ -61,6 +61,8 @@ combineReducers - added to combine all the reducers
 
 store is made and all the states are stored
 
+sharePost completed
+
 
 
  

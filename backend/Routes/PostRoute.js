@@ -9,6 +9,10 @@ import {
 } from "../Controllers/PostController.js";
 const router = express.Router();
 
+
+
+
+//route
 router.post("/", createPost);
 router.get("/:id", getPost);
 router.put("/:id", updatePost);

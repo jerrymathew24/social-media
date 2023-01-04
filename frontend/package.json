@@ -1,26 +1,41 @@
 {
-  "name": "frontend",
+  "name": "starter",
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:5000",
   "dependencies": {
-    "@mantine/core": "^5.8.0",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "axios": "^1.2.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-icons": "^4.6.0",
-    "react-redux": "^8.0.5",
-    "react-router-dom": "^6.6.1",
-    "react-scripts": "^4.0.3",
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@iconscout/react-unicons": "^1.1.6",
+    "@mantine/core": "^4.2.1",
+    "@mantine/hooks": "^4.2.1",
+    "@mui/material": "^5.6.0",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.0.0",
+    "@testing-library/user-event": "^13.2.1",
+    "apexcharts": "^3.35.0",
+    "axios": "^0.27.2",
+    "framer-motion": "^6.2.9",
+    "react": "^17.0.2",
+    "react-apexcharts": "^1.4.0",
+    "react-bootstrap": "^2.5.0",
+    "react-charts": "^2.0.0-beta.7",
+    "react-circular-progressbar": "^2.0.4",
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.4.0",
+    "react-input-emoji": "^4.2.0",
+    "react-redux": "^8.0.4",
+    "react-router-dom": "^6.4.1",
+    "react-scripts": "5.0.0",
+    "recharts": "^2.1.14",
     "redux": "^4.2.0",
-    "redux-devtools-extension": "^2.13.9",
-    "redux-logger": "^3.0.6",
-    "redux-persist": "^6.0.0",
-    "redux-thunk": "^2.4.2",
-    "web-vitals": "^2.1.4"
+    "redux-thunk": "^2.4.1",
+    "remixicon": "^2.5.0",
+    "scrollreveal": "^4.0.9",
+    "socket.io-client": "^4.5.3",
+    "styled-components": "^5.3.6",
+    "timeago.js": "^4.0.2",
+    "web-vitals": "^2.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -45,8 +60,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "react-error-overlay": "^6.0.9"
   }
 }

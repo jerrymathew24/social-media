@@ -41,3 +41,13 @@ delete a post
 like and dislike post
 
 getTimelinePosts added
+
+working with ---JWT---
+
+
+React router dom added
+
+upload route added
+
+multer added
+
