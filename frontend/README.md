@@ -48,21 +48,40 @@ ACTION types are created in authAction(with dispatch )
 axios is installed 
 (to make request to the server)
 
-api(AuthApi) calling is done in authActions.js
-
-API folder is made and end points are created
+Actions are made for authentication
 
 reducer is made (AuthReducer)
 (all the actions are included in the reducer)
 (all data are setup to be stored in the local storage)
+
+API's are made [ end points are created ]
 
 combineReducers - added to combine all the reducers
 (reducers/index.js)
 
 store is made and all the states are stored
 
-sharePost completed
+Authentication completed
 
+------------------Authentication completed----------
 
+Actions are made for PostShare
 
- 
+reducer is made (PostReducer)
+(all the actions are included in the reducer)
+(all data are setup to be stored in the local storage)
+
+API's are made [ end points are created ]
+
+combineReducers - added to combine all the reducers
+(reducers/index.js)
+
+PostShare completed
+
+------------------PostShare completed----------
+
+Actions are made for Timeline Posts
+
+API is made [ end points are created ]
+
+-------------------Timeline Posts Completed------------------

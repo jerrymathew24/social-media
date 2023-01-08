@@ -3,7 +3,9 @@ import * as UploadApi from '../api/UploadRequest.js'
 
 
 export const uploadImage = (data) => async(dispatch)=> {
+    console.log(data,"data in uploadaction image")
     try {
+        console.log("acion uploasd")
         await UploadApi.uploadImage(data)
         
     } catch (error) {
@@ -12,8 +14,8 @@ export const uploadImage = (data) => async(dispatch)=> {
 }
 
 export const uploadPost = (data) => async(dispatch) => {
-
-
+console.log("upload post in action")
+console.log(data,"in upload posts")
     dispatch({type: "UPLOAD_START"})
 
 

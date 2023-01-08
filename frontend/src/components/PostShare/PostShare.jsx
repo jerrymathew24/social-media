@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react'
 import './PostShare.css'
 import ProfileImage from '../../img/dj.jpg'
 import {FaPhotoVideo} from 'react-icons/fa'
-import {MdOndemandVideo } from 'react-icons/md'
+// import {MdOndemandVideo } from 'react-icons/md'
 import {MdLocationPin} from 'react-icons/md'
 import {CgCalendarDates} from 'react-icons/cg'
 import {AiOutlineClose} from 'react-icons/ai'
@@ -14,10 +14,10 @@ import { uploadImage, uploadPost } from '../../actions/UploadAction.js'
 const PostShare = () => {
 
     const loading = useSelector((state)=>state.postReducer.uploading)
-    const  user  = useSelector((state)=>state.authReducer.authData)
+    const user  = useSelector((state)=>state.authReducer.authData)
     ////////////////////////////////////////////////////
-    console.log(user, 'userrrrrrrrrrrrrr')
-    console.log(user.data.user._id,'idddddddddddddddd')
+    //console.log(user, 'userrrrrrrrrrrrrr')
+    //console.log(user.data.user._id,'idddddddddddddddd')
     ////////////////////////////////////////////////////
     const desc = useRef()
     const [image, setImage] = useState(null)
@@ -29,10 +29,11 @@ const PostShare = () => {
     const onImageChange = (event)=> {
         if(event.target.files && event.target.files[0]) {
             let img = event.target.files[0]
+            console.log(img,"immggg")
             setImage(img)
         }
     }
-
+console.log(image,"imageeeee")
 
     //reset
     const reset = ()=> {
@@ -49,12 +50,14 @@ const PostShare = () => {
           userId : user.data.user._id,
           desc :desc.current.value
         } 
-       
+       console.log(newPost,"newPost.......",image,"image")
         
 
         if(image){
             const data = new FormData()
             const filename = Date.now() + image.name
+            console.log(filename,"filename")
+            
             data.append("name", filename)
             data.append("file", image)
             newPost.image = filename
@@ -62,14 +65,14 @@ const PostShare = () => {
 
 
             try {
-                //dispatching action
+                //dispatching the image
                 
                 dispatch(uploadImage(data))
             } catch (error) {
                 console.log(error)
             }
         }
-        //dispatching the action
+        //dispatching the post details
 
         dispatch(uploadPost(newPost))
 
@@ -97,9 +100,9 @@ const PostShare = () => {
             </div>
             <div className="option"
             style={{color: "var(--video)"}}>
-            <MdOndemandVideo />
-             <span>Video</span>
-            </div>
+            {/* <MdOndemandVideo />
+             <span>Video</span>*/}
+            </div> 
             <div className="option"
             style={{color: "var(--location)"}}>
             <MdLocationPin />  

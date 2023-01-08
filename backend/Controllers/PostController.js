@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 
 //create post
 export const createPost = async (req, res) => {
+    console.log(req.body,"create post")
     const newPost = new PostModel(req.body);
     try {
         await newPost.save();
