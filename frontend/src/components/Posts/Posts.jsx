@@ -16,14 +16,8 @@ const Posts = () => {
   
   //to fetch posts at the start of app //calling action
   useEffect(()=> {
-    //const userIdd = user.data.user._id
     dispatch(getTimelinePosts(user.data.user._id))
-    //console.log(user.data.user._id,'userid')
-    //console.log(user,'user')
-    //console.log(userId,'userid')
-    //console.log(user.data.user._id,'userrrrrrrrriiiiiiiidddddddd')
-    //console.log(posts, 'possssssssssst')
-
+    console.log(user.data.user._id,"checkkkkkkkkkkkk")
   },[])
 
 
@@ -31,8 +25,7 @@ const Posts = () => {
     <div className="Posts"> 
         {loading ? 'Fetching Posts' 
         : posts.map((post, id)=>{
-          //console.log(post,'post')
-          //console.log(id,'postid')
+          
             return <Post data={post} userId={post.userId}  id={id} key={id} />
             
         })}

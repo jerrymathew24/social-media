@@ -85,3 +85,6 @@ Actions are made for Timeline Posts
 API is made [ end points are created ]
 
 -------------------Timeline Posts Completed------------------
+
+like and unlike post completed
+
