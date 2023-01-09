@@ -15,6 +15,7 @@ const PostShare = () => {
 
     const loading = useSelector((state)=>state.postReducer.uploading)
     const user  = useSelector((state)=>state.authReducer.authData)
+    const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
     ////////////////////////////////////////////////////
     //console.log(user, 'userrrrrrrrrrrrrr')
     //console.log(user.data.user._id,'idddddddddddddddd')
@@ -82,7 +83,7 @@ console.log(image,"imageeeee")
   return (
     
     <div className="PostShare">
-        <img src={ProfileImage} alt="" />
+        <img src={user.profilePicture ? serverPublic + user.profilePicture : serverPublic + 'defaultProfile.webp'} alt="" />
         <div >
         <input
                 ref={desc}

@@ -88,3 +88,5 @@ API is made [ end points are created ]
 
 like and unlike post completed
 
+Profile card completed
+
