@@ -8,6 +8,7 @@ import {CgCalendarDates} from 'react-icons/cg'
 import {AiOutlineClose} from 'react-icons/ai'
 import { useDispatch, useSelector } from "react-redux"
 import { uploadImage, uploadPost } from '../../actions/UploadAction.js'
+import { Image } from '@mantine/core'
 
 
 
@@ -30,11 +31,9 @@ const PostShare = () => {
     const onImageChange = (event)=> {
         if(event.target.files && event.target.files[0]) {
             let img = event.target.files[0]
-            console.log(img,"immggg")
             setImage(img)
         }
     }
-console.log(image,"imageeeee")
 
     //reset
     const reset = ()=> {

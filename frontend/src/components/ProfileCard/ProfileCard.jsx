@@ -8,7 +8,6 @@ import "./ProfileCard.css";
 const ProfileCard = ({ location }) => {
   const user = useSelector((state) => state.authReducer.authData);
   const posts = useSelector((state)=> state.postReducer.posts)
-  console.log(user, "justinnnnnnnnnnnnnnn");
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
 
   return (
@@ -70,7 +69,7 @@ const ProfileCard = ({ location }) => {
         <span>
           <Link
             style={{ textDecoration: "none", color: "inherit" }}
-            to={`/profile/${user._id}`}
+            to={`/profile/${user.data.user._id}`}
           >
             My Profile
           </Link>

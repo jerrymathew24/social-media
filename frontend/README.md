@@ -90,3 +90,11 @@ like and unlike post completed
 
 Profile card completed
 
+------------------------------------------------------
+Actions are made for Info Card
+
+API is made [ end points are created ]
+
+getUser done
+
+logout completed

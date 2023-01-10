@@ -17,7 +17,6 @@ const Posts = () => {
   //to fetch posts at the start of app //calling action
   useEffect(()=> {
     dispatch(getTimelinePosts(user.data.user._id))
-    console.log(user.data.user._id,"checkkkkkkkkkkkk")
   },[])
 
 
