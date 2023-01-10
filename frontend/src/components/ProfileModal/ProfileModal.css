@@ -1,0 +1,25 @@
+@media screen and (max-width:800px) {
+    .inputFile{
+     justify-content: center;
+     align-items: center; 
+      display: flex;
+    }
+    .inputFile>span{
+       display: none;
+       flex-direction: column;
+      
+    }
+    .infoButton{
+       padding: 10px;
+    }
+   
+ }
+ 
+ @media screen and (max-width:520px) {
+    .inputFile{
+       display: none;
+    left: 10px;
+    }
+   
+ }
+ 

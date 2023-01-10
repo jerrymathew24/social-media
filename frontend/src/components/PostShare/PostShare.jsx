@@ -50,18 +50,17 @@ const PostShare = () => {
           userId : user.data.user._id,
           desc :desc.current.value
         } 
-       console.log(newPost,"newPost.......",image,"image")
-        
 
         if(image){
             const data = new FormData()
+            //console.log(data,'ithanu postsharle data')
             const filename = Date.now() + image.name
             console.log(filename,"filename")
             
             data.append("name", filename)
             data.append("file", image)
             newPost.image = filename
-            console.log(newPost,'newposttttttttttttt')
+            
 
 
             try {

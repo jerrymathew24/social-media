@@ -1,5 +1,6 @@
 import UserModel from "../Models/userModel.js";
-import bcrypt from "bcrypt";
+import bcrypt from "bcrypt"
+import jwt from 'jsonwebtoken'
 
 //get a User
 export const getUser = async (req, res) => {
@@ -21,9 +22,9 @@ export const getUser = async (req, res) => {
 //Update a user
 export const updateUser = async (req, res) => {
   const id = req.params.id;
-  const { currentUserId, currentUserAdminStatus, password } = req.body;
+  const { _id, currentUserAdminStatus, password } = req.body;
 
-  if (id === currentUserId || currentUserAdminStatus) {
+  if (id === _id || currentUserAdminStatus) {
     try {
       if (password) {
         const salt = await bcrypt.genSalt(10);
@@ -34,24 +35,33 @@ export const updateUser = async (req, res) => {
         new: true,
       });
 
-      res.status(200).json(user);
+
+      const token = jwt.sign(
+        { username: user.username, id: user._id },
+        process.env.JWT_KEY, { expiresIn: "1h" }
+      )
+      res.status(200).json({ user, token })
+
+
+
     } catch (error) {
       res.status(500).json(error);
     }
   }
-  else
-  {
+
+
+  else {
     res.status(403).json("Access Denied!")
   }
 }
 
 
 //delete user 
-export const deleteUser = async ( req, res) => { 
+export const deleteUser = async (req, res) => {
   const id = req.params.id
-  const {currentUserId, currentUserAdminStatus} = req.body
+  const { currentUserId, currentUserAdminStatus } = req.body
 
-  if (currentUserId === id || currentUserAdminStatus){
+  if (currentUserId === id || currentUserAdminStatus) {
     try {
       await UserModel.findByIdAndDelete(id)
       res.status(200).json("User deleted successfully")
@@ -59,16 +69,16 @@ export const deleteUser = async ( req, res) => {
       res.status(500).json(error)
     }
   }
-  else
-  {
+  else {
     res.status(403).json("Access Denied!")
-  }}
+  }
+}
 
-   
+
 //Follow a User
 export const followUser = async (req, res) => {
   const id = req.params.id
-  const {currentUserId} = req.body
+  const { currentUserId } = req.body
 
   if (currentUserId === id) {
     res.status(403).json("Action Forbidden")
@@ -78,14 +88,12 @@ export const followUser = async (req, res) => {
       const followUser = await UserModel.findById(id)
       const followingUser = await UserModel.findById(currentUserId)
 
-      if(!followUser.followers.includes(currentUserId))
-      {
-        await followUser.updateOne({ $push: {followers: currentUserId}})
-        await followingUser.updateOne({$push: {following: id}})
+      if (!followUser.followers.includes(currentUserId)) {
+        await followUser.updateOne({ $push: { followers: currentUserId } })
+        await followingUser.updateOne({ $push: { following: id } })
         res.status(200).json("User followed!")
       }
-      else 
-      {
+      else {
         res.status(403).json("You are Already following this User")
       }
     } catch (error) {
@@ -96,11 +104,11 @@ export const followUser = async (req, res) => {
 
 
 
-   
+
 //UnFollow a User
 export const unFollowUser = async (req, res) => {
   const id = req.params.id
-  const {currentUserId} = req.body
+  const { currentUserId } = req.body
 
   if (currentUserId === id) {
     res.status(403).json("Action Forbidden")
@@ -110,14 +118,12 @@ export const unFollowUser = async (req, res) => {
       const followUser = await UserModel.findById(id)
       const followingUser = await UserModel.findById(currentUserId)
 
-      if(followUser.followers.includes(currentUserId))
-      {
-        await followUser.updateOne({ $pull: {followers: currentUserId}})
-        await followingUser.updateOne({$pull: {following: id}})
+      if (followUser.followers.includes(currentUserId)) {
+        await followUser.updateOne({ $pull: { followers: currentUserId } })
+        await followingUser.updateOne({ $pull: { following: id } })
         res.status(200).json("User Unfollowed!")
       }
-      else 
-      {
+      else {
         res.status(403).json("You are Not following this User")
       }
     } catch (error) {
