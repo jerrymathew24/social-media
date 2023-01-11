@@ -45,10 +45,10 @@ const handleSubmit = (e) =>{
 
   if(profileImage){
     const data = new FormData()
-    console.log(data,'ithanu data')
+    //console.log(data,'ithanu data')
     const fileName = Date.now() + profileImage.name;
-    console.log(fileName,"filename of profile img")
-
+    // console.log(fileName,"filename of profile img")
+ 
     data.append("name",fileName) ;
     data.append("file",profileImage);
     UserData.profilePicture = fileName;

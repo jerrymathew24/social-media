@@ -8,52 +8,75 @@ import * as UserApi from "../../api/UserRequest.js";
 import { logOut } from "../../actions/AuthAction";
 
 function InfoCard() {
+
   const [modalOpened, setModalOpened] = useState(false);
+
+  //redux
   const dispatch = useDispatch();
   const params = useParams();
 
   const profileUserId = params.id;
+  //console.log(profileUserId,'profile user ID')
   const [profileUser, setProfileUser] = useState({});
 
   const user = useSelector((state) => state.authReducer.authData);
+//console.log(user,"in search")
+
 
   useEffect(() => {
-    const fetchProfileUser = async () => {
-      if (profileUserId === user.data.user._id) {
-        setProfileUser(user);
-      } else {
+    const fetchProfileUser = async () => {    
+      if (profileUserId === user.data.user._id) 
+      {
+        setProfileUser(user.data.user);
+        //console.log(user.data.user,"userrrrrrrrrrrrrrrrrrrrrrr")
+      } 
+      else 
+      {
         const profileUser = await UserApi.getUser(profileUserId);
-        setProfileUser(profileUser, console.log(profileUser, "profileuser"));
+        setProfileUser(profileUser);
+        // console.log(profileUser,"profffffffffileuserrrrrrrr")
       }
     };
+    
+
     fetchProfileUser();
   }, [user]);
+
+
+  console.log(profileUser,"profffffffffileuserrrrrrrr")
+
 
   const handleLogout = () => {
     dispatch(logOut());
   };
+
+
   return (
     <div className="InfoCard">
       <div className="infoHead">
         <h4>Profile Info</h4>
         {user.data.user._id === profileUserId ? (
           <div>
+
+
             <BiPencil onClick={() => setModalOpened(true)} />
             <ProfileModal
               modalOpened={modalOpened}
               setModalOpened={setModalOpened}
               data = {user}
             />
+
+
           </div>
-        ) : (
-          ""
-        )}
+        ) : ("")}
+
+
       </div>
       <div className="info">
         <span>
           <b>Status</b>
         </span>
-        <span> {profileUser.Status}</span>
+        <span> {profileUser.relationship}</span>
       </div>
 
       <div className="info">
@@ -67,7 +90,7 @@ function InfoCard() {
         <span>
           <b>Interested In</b>
         </span>
-        <span> {profileUser.interestedin}</span>
+        <span> {profileUser.worksAt}</span>
       </div>
 
       <button className="button logout-button" onClick={handleLogout}>
