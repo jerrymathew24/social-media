@@ -8,11 +8,12 @@ import { logIn, signUp } from '../../actions/AuthAction.js';
 const Auth = () => {
   const dispatch = useDispatch()
   const loading = useSelector((state)=>state.authReducer.loading)
+  // use state to reverse the form from login to signup
   const [isSignUp, setIsSignUp] = useState(true);
   
 
 
-
+  // use state to capture the data on the form
   const [data, setData] = useState({
     firstname: "",
     lastname: "",
@@ -22,15 +23,16 @@ const Auth = () => {
   });
 
   // password check
-
   const [confirmPass, setConfirmPass] = useState(true);
 
+
   const handleChange = (e) => {
+    //event on form is calling the setData 
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
 
-
+// to prevent the default behavior of react -- redirecting to a new page
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -131,7 +133,7 @@ const Auth = () => {
               />
             )}
           </div>
-
+                  {/*  confirm password */}
           <span
             style={{
               display: confirmPass ? "none" : "block",
@@ -148,6 +150,7 @@ const Auth = () => {
             <span
               style={{ fontSize: "12px", cursor: "pointer" }}
               onClick={() => {
+                //using useState on click to reverse the form to login and signup
                 setIsSignUp((prev) => !prev);
                 resetForm();
               }}

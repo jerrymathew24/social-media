@@ -24,7 +24,7 @@ export const updateUser = async (req, res) => {
   const id = req.params.id;
   const { _id, currentUserAdminStatus, password } = req.body;
 
-  if (id === _id || currentUserAdminStatus) {
+  if (id === _id ) {
     try {
       if (password) {
         const salt = await bcrypt.genSalt(10);
@@ -32,7 +32,7 @@ export const updateUser = async (req, res) => {
       }
 
       const user = await UserModel.findByIdAndUpdate(id, req.body, {
-        new: true,
+        new: true
       });
 
 

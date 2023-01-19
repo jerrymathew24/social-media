@@ -6,9 +6,11 @@ import { Link } from "react-router-dom";
 import "./ProfileCard.css";
 
 const ProfileCard = ({ location }) => {
-  const user = useSelector((state) => state.authReducer.authData);
-  const posts = useSelector((state)=> state.postReducer.posts)
+  const  {user}  = useSelector((state) => state.authReducer.authData);
+  const posts = useSelector((state) => state.postReducer.posts);
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
+
+  //console.log(user, "real user");
 
   return (
     <div className="ProfileCard">
@@ -32,22 +34,20 @@ const ProfileCard = ({ location }) => {
       </div>
       <div className="ProfileName">
         <span>
-          {user.data.user.firstname} {user.data.user.lastname}
+          {user.firstname} {user.lastname}
         </span>
-        <span>
-          {user.data.user.status ? user.data.user.status : "Update Status"}
-        </span>
+        <span>{user.relationship ? user.relationship : "Update Status"}</span>
       </div>
       <div className="followStatus">
         <hr />
         <div className="">
           <div className="follow">
-            <span>{user.data.user.following.length}</span>
+            <span>{user.following.length}</span>
             <span>Following</span>
           </div>
           <div className="vl"></div>
           <div className="follow">
-            <span>{user.data.user.followers.length}</span>
+            <span>{user.followers.length}</span>
             <span>Followers</span>
           </div>
 
@@ -55,7 +55,12 @@ const ProfileCard = ({ location }) => {
             <>
               <div className="vl"></div>
               <div className="follow">
-                <span>{posts.filter((post)=> post.userId === user.data.user._id).length}</span>
+                <span>
+                  {
+                    posts.filter((post) => post.userId === user._id)
+                      .length
+                  }
+                </span>
                 <span> Posts</span>
               </div>
             </>
@@ -69,7 +74,7 @@ const ProfileCard = ({ location }) => {
         <span>
           <Link
             style={{ textDecoration: "none", color: "inherit" }}
-            to={`/profile/${user.data.user._id}`}
+            to={`/profile/${user._id}`}
           >
             My Profile
           </Link>

@@ -15,12 +15,11 @@ import { Image } from '@mantine/core'
 const PostShare = () => {
 
     const loading = useSelector((state)=>state.postReducer.uploading)
-    const user  = useSelector((state)=>state.authReducer.authData)
+    const { user } = useSelector((state)=>state.authReducer.authData)
     const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
     ////////////////////////////////////////////////////
     //console.log(user, 'userrrrrrrrrrrrrr')
-    //console.log(user.data.user._id,'idddddddddddddddd')
-    ////////////////////////////////////////////////////
+    //console.log(user.data.us
     const desc = useRef()
     const [image, setImage] = useState(null)
     const imageRef = useRef()
@@ -42,12 +41,12 @@ const PostShare = () => {
     }
 
 
-    //handleClick
+    //handleClick   
     const handleSubmit = (e) =>{
         e.preventDefault();
       
         const newPost = {
-          userId : user.data.user._id,
+          userId : user._id,
           desc :desc.current.value
         } 
 

@@ -23,6 +23,7 @@ app.use(cors())
 
 dotenv.config();
 
+//DB connection
 mongoose
   .connect(process.env.MONGO_DB, {
     useNewUrlParser: true,

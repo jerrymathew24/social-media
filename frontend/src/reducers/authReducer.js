@@ -1,8 +1,8 @@
 const authReducer = (
     
-    state = { authData: [], 
+    state = { authData: null, 
         loading: false, 
-        updateLoading: false,
+        // updateLoading: false,
         error: false }, action) => {
 
 

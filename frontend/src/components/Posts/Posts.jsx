@@ -10,13 +10,13 @@ const Posts = () => {
 
   const dispatch = useDispatch()
   // fetching user,posts from redux store(global state)
-  const user = useSelector((state)=> state.authReducer.authData)
+  const {user} = useSelector((state)=> state.authReducer.authData)
   let {posts, loading } = useSelector((state)=> state.postReducer)
-
+//console.log(user,'user from posts.jsx')
   
   //to fetch posts at the start of app //calling action
   useEffect(()=> {
-    dispatch(getTimelinePosts(user.data.user._id))
+    dispatch(getTimelinePosts(user._id))
   },[])
 
 

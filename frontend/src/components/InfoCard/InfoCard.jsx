@@ -15,19 +15,21 @@ function InfoCard() {
   const dispatch = useDispatch();
   const params = useParams();
 
+  //console.log(params.id,'params iddd')
+
   const profileUserId = params.id;
   //console.log(profileUserId,'profile user ID')
   const [profileUser, setProfileUser] = useState({});
 
-  const user = useSelector((state) => state.authReducer.authData);
-//console.log(user,"in search")
+  const {user} = useSelector((state) => state.authReducer.authData);
+  //console.log(user,"in infocarddd")
 
 
   useEffect(() => {
     const fetchProfileUser = async () => {    
-      if (profileUserId === user.data.user._id) 
+      if (profileUserId === user._id) 
       {
-        setProfileUser(user.data.user);
+        setProfileUser(user);
         //console.log(user.data.user,"userrrrrrrrrrrrrrrrrrrrrrr")
       } 
       else 
@@ -43,10 +45,11 @@ function InfoCard() {
   }, [user]);
 
 
-  console.log(profileUser,"profffffffffileuserrrrrrrr")
+  //console.log(profileUser,"profffffffffileuserrrrrrrr")
 
-
-  const handleLogout = () => {
+  
+  //logout
+    const handleLogout = () => {
     dispatch(logOut());
   };
 
@@ -55,7 +58,7 @@ function InfoCard() {
     <div className="InfoCard">
       <div className="infoHead">
         <h4>Profile Info</h4>
-        {user.data.user._id === profileUserId ? (
+        {user._id === profileUserId ? (
           <div>
 
 
@@ -63,6 +66,7 @@ function InfoCard() {
             <ProfileModal
               modalOpened={modalOpened}
               setModalOpened={setModalOpened}
+              ///////////////////////////////////////
               data = {user}
             />
 
@@ -88,7 +92,7 @@ function InfoCard() {
 
       <div className="info">
         <span>
-          <b>Interested In</b>
+          <b>Works At</b>
         </span>
         <span> {profileUser.worksAt}</span>
       </div>

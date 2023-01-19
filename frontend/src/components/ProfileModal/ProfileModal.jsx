@@ -7,7 +7,9 @@ import { updateUser } from '../../actions/userAction.js';
 import './ProfileModal.css'
 
 
-function ProfileModal({modalOpened,setModalOpened,data}) {
+
+
+function ProfileModal({ modalOpened, setModalOpened, data}) {
   const theme = useMantineTheme();
 
 const {password,...others} = data;
@@ -16,7 +18,7 @@ const [profileImage,setProfileImage] = useState(null);
 const [coverImage,setCoverImage] = useState(null)
 const dispatch = useDispatch();
 const param = useParams()
-const user = useSelector((state)=> state.authReducer.authData)
+const {user} = useSelector((state)=> state.authReducer.authData)
  
 
 
@@ -37,48 +39,52 @@ const onImageChange = (event)=>{
   }
 }
 
+
+
 // handleSubmit
 const handleSubmit = (e) =>{
   e.preventDefault();
+
   let UserData = formData;
   console.log(UserData,'ithanu userdata')
 
-  if(profileImage){
-    const data = new FormData()
-    //console.log(data,'ithanu data')
-    const fileName = Date.now() + profileImage.name;
-    // console.log(fileName,"filename of profile img")
+
+      if(profileImage){
+          const data = new FormData()
+          //console.log(data,'ithanu data')
+          const filename = Date.now() + profileImage.name;
+          // console.log(fileName,"filename of profile img")
  
-    data.append("name",fileName) ;
-    data.append("file",profileImage);
-    UserData.profilePicture = fileName;
+          data.append("name",filename) ;
+          data.append("file",profileImage);
+          UserData.profilePicture = filename;
 
-    try {
-      dispatch(uploadImage(data))
-      console.log(data,'upload noww')
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  if(coverImage){
-    const data = new FormData();
-    const fileName = Date.now() + coverImage.name;
-    data.append("name",fileName);
-    data.append("file", coverImage);
-    UserData.coverPicture =fileName;
-    try {
-      dispatch(uploadImage(data))
-      console.log(data,"modallll");
+          try {
+            dispatch(uploadImage(data))
+            console.log(data,'upload profile image')
+          } catch (error) {
+            console.log(error);
+          }
+        }
+      if(coverImage){
+          const data = new FormData();
+          const filename = Date.now() + coverImage.name;
+          data.append("name",filename);
+          data.append("file", coverImage);
+          UserData.coverPicture =filename;
+          try {
+           dispatch(uploadImage(data))
+           console.log(data,"upload cover image");
       
-    } catch (error) {
-      console.log(error);
-    }
+         } catch (error) {
+           console.log(error);
+         }
 
-  }
+       }
   
-  dispatch(updateUser(param.id,UserData));
-  setModalOpened(false)
-  
+       dispatch(updateUser(param.id,UserData));
+       setModalOpened(false)
+       data()
 }
 
 
@@ -103,7 +109,7 @@ return (
           name='firstname'
            placeholder='First Name' 
            onChange={handleChange}
-           value ={formData.firstName}
+           value ={formData.firstname}
            />
 
           <input type="text"
@@ -111,7 +117,7 @@ return (
             name='lastname'
              placeholder='Last Name'
              onChange={handleChange}
-             value ={formData.lastName}
+             value ={formData.lastname}
              />
 
       </div>
