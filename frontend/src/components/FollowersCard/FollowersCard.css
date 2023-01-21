@@ -38,3 +38,17 @@
     padding-left: 20px;
     padding-right: 20px;
 }
+
+.UnfollowButton{
+    color: var(--orange);
+    border: 2px solid var(--orange);
+    cursor: pointer;
+    background: transparent;
+}
+
+@media screen and (max-width:768px) {
+    .FollwerCard{
+        display: none;
+        
+    }
+}

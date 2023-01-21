@@ -4,11 +4,11 @@ import Comment from '../../img/comment.png'
 import Heart from '../../img/like.png'
 import NotLike from '../../img/notlike.png'
 import { useSelector } from 'react-redux'
-import { likePost } from '../../api/PostRequest'
+import { likePost } from '../../api/PostRequest.js'
 
 
 
-const Post = ({data}) => {
+const Post = ({data,userId}) => {
   const {user} = useSelector((state)=> state.authReducer.authData)
   const [liked, setLiked] = useState(data.likes.includes(user._id))
   const [likes, setLikes] = useState(data.likes.length)
@@ -42,7 +42,7 @@ const Post = ({data}) => {
             <span> {data.desc}</span>
         </div>
     </div>
-  )
+  ) 
 }
 
 export default Post

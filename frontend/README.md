@@ -107,4 +107,6 @@ API is made [ end points are created ]
 All the actions are included in the AuthReducer
 (all data are setup to be stored in the local storage)
 
+------------------------------------------------------
 
+follow anf unfollow user completed

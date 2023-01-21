@@ -10,8 +10,7 @@ import './ProfileModal.css'
 
 
 function ProfileModal({ modalOpened, setModalOpened, data}) {
-  const theme = useMantineTheme();
-
+const theme = useMantineTheme();
 const {password,...others} = data;
 const [formData,setFormData] = useState(others);
 const [profileImage,setProfileImage] = useState(null);
@@ -46,18 +45,16 @@ const handleSubmit = (e) =>{
   e.preventDefault();
 
   let UserData = formData;
-  console.log(UserData,'ithanu userdata')
+  
 
 
       if(profileImage){
           const data = new FormData()
-          //console.log(data,'ithanu data')
-          const filename = Date.now() + profileImage.name;
-          // console.log(fileName,"filename of profile img")
+          const fileName = Date.now() + profileImage.name;
  
-          data.append("name",filename) ;
+          data.append("name",fileName) ;
           data.append("file",profileImage);
-          UserData.profilePicture = filename;
+          UserData.profilePicture = fileName;
 
           try {
             dispatch(uploadImage(data))
@@ -68,13 +65,15 @@ const handleSubmit = (e) =>{
         }
       if(coverImage){
           const data = new FormData();
-          const filename = Date.now() + coverImage.name;
-          data.append("name",filename);
+          const fileName = Date.now() + coverImage.name;
+          data.append("name",fileName);
           data.append("file", coverImage);
-          UserData.coverPicture =filename;
+          UserData.coverPicture =fileName;
           try {
            dispatch(uploadImage(data))
            console.log(data,"upload cover image");
+
+        
       
          } catch (error) {
            console.log(error);
@@ -84,7 +83,7 @@ const handleSubmit = (e) =>{
   
        dispatch(updateUser(param.id,UserData));
        setModalOpened(false)
-       data()
+       // data()
 }
 
 

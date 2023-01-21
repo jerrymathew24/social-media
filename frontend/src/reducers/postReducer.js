@@ -1,11 +1,11 @@
-const postReducer = (
+ const postReducer = (
 
 
     state = { posts: [], 
         loading: false, 
         error: false, 
         uploading: false },action)=> {
-
+  
 
     switch (action.type) {
         

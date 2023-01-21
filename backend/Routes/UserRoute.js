@@ -1,7 +1,9 @@
 import express from "express";
+//import { getAllUser } from "../../frontend/src/api/UserRequest.js";
 import {
   deleteUser,
   followUser,
+  getAllUsers,
   getUser,
   unFollowUser,
   updateUser,
@@ -11,6 +13,7 @@ const router = express.Router();
 
 
 //route
+router.get('/', getAllUsers)
 router.get("/:id", getUser);
 router.put("/:id", updateUser);
 router.delete("/:id", deleteUser);

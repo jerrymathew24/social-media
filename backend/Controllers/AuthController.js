@@ -12,6 +12,7 @@ export const registerUser = async (req, res) => {
   req.body.password = hashedPass
   const newUser = new UserModel(req.body);
   const {username} = req.body
+  // checking the username is already registered or not
   try {
 
     const oldUser = await UserModel.findOne({username})  

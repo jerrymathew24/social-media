@@ -6,6 +6,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function App() {
+  //from react redux store
   const user = useSelector((state) => state.authReducer.authData);
   return (
     <div className="App">

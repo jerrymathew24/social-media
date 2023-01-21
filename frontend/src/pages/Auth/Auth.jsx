@@ -10,10 +10,7 @@ const Auth = () => {
   const loading = useSelector((state)=>state.authReducer.loading)
   // use state to reverse the form from login to signup
   const [isSignUp, setIsSignUp] = useState(true);
-  
-
-
-  // use state to capture the data on the form
+// use state to capture the data on the form
   const [data, setData] = useState({
     firstname: "",
     lastname: "",

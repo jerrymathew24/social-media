@@ -5,54 +5,39 @@ import ProfileModal from "../ProfileModal/ProfileModal";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import * as UserApi from "../../api/UserRequest.js";
-import { logOut } from "../../actions/AuthAction";
+import { logOut } from "../../actions/AuthAction.js";
 
 function InfoCard() {
-
   const [modalOpened, setModalOpened] = useState(false);
 
   //redux
   const dispatch = useDispatch();
   const params = useParams();
 
-  //console.log(params.id,'params iddd')
-
   const profileUserId = params.id;
-  //console.log(profileUserId,'profile user ID')
   const [profileUser, setProfileUser] = useState({});
-
-  const {user} = useSelector((state) => state.authReducer.authData);
-  //console.log(user,"in infocarddd")
-
+  const { user } = useSelector((state) => state.authReducer.authData);
 
   useEffect(() => {
-    const fetchProfileUser = async () => {    
-      if (profileUserId === user._id) 
-      {
+    const fetchProfileUser = async () => {
+      if (profileUserId === user._id) {
+        // checking our own profile
         setProfileUser(user);
-        //console.log(user.data.user,"userrrrrrrrrrrrrrrrrrrrrrr")
-      } 
-      else 
-      {
+      }
+      // checking profile of another person
+      else {
         const profileUser = await UserApi.getUser(profileUserId);
         setProfileUser(profileUser);
-        // console.log(profileUser,"profffffffffileuserrrrrrrr")
       }
     };
-    
 
     fetchProfileUser();
   }, [user]);
 
-
-  //console.log(profileUser,"profffffffffileuserrrrrrrr")
-
-  
   //logout
-    const handleLogout = () => {
+  const handleLogout = () => {
     dispatch(logOut());
   };
-
 
   return (
     <div className="InfoCard">
@@ -60,21 +45,16 @@ function InfoCard() {
         <h4>Profile Info</h4>
         {user._id === profileUserId ? (
           <div>
-
-
             <BiPencil onClick={() => setModalOpened(true)} />
             <ProfileModal
               modalOpened={modalOpened}
               setModalOpened={setModalOpened}
-              ///////////////////////////////////////
-              data = {user}
+              data={user}
             />
-
-
           </div>
-        ) : ("")}
-
-
+        ) : (
+          ""
+        )}
       </div>
       <div className="info">
         <span>
