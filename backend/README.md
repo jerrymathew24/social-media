@@ -138,3 +138,23 @@ working on posts
 jwt added
 
 backend completed
+
+==============CHAT======================
+
+starting with creating Models
+
+chatModel created
+
+messageModel created
+
+ChatRoute created
+
+ChatController is made
+
+MessageRoute is created
+
+MessageController is made
+
+API Completed
+
+--------------------------------------------------------------------
