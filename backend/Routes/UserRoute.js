@@ -1,5 +1,4 @@
 import express from "express";
-//import { getAllUser } from "../../frontend/src/api/UserRequest.js";
 import {
   deleteUser,
   followUser,
@@ -8,6 +7,7 @@ import {
   unFollowUser,
   updateUser,
 } from "../Controllers/UserController.js";
+import authMiddleware from "../Middleware/authMiddleware.js";
 
 const router = express.Router();
 
@@ -15,9 +15,9 @@ const router = express.Router();
 //route
 router.get('/', getAllUsers)
 router.get("/:id", getUser);
-router.put("/:id", updateUser);
-router.delete("/:id", deleteUser);
-router.put("/:id/follow", followUser);
-router.put("/:id/unfollow", unFollowUser);
+router.put("/:id", authMiddleware, updateUser);
+router.delete("/:id", authMiddleware, deleteUser);
+router.put("/:id/follow", authMiddleware, followUser);
+router.put("/:id/unfollow", authMiddleware, unFollowUser);
 
 export default router;
