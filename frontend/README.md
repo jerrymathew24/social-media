@@ -31,3 +31,13 @@ Login and Signup completed
 
 Frontend Completed
 
+--------------------------------------------------------------------------------
+
+starting chat UI 
+
+working on chat.jsx and chat.css
+
+making api request chatRequests.js
+
+user data fetching done
+

@@ -19,8 +19,13 @@ const RightSide = () => {
           </Link>
             
             <SlSettings/>
+
             <IoMdNotificationsOutline />
-            <GoComment />
+
+            <Link to = '../chat'>
+              <GoComment />
+            </Link>
+            
         </div>
 
         <TrendCard />
