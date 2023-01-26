@@ -41,3 +41,19 @@ making api request chatRequests.js
 
 user data fetching done
 
+conversation completed
+
+working on chat box
+
+chatbox component created
+
+user data fetching done
+
+working on chat messages
+
+working on api
+
+chats displayed
+
+message input created
+

@@ -1,11 +1,8 @@
-.RightSide{
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
+
 
 .navIcons{
     margin-top: 1rem;
+    margin-left: 0.8rem;
     display: flex;
     justify-content: space-between;
 }
@@ -24,4 +21,16 @@
     height: 3rem;
     width: 80%;
     align-self: center;
+}
+
+.RightSide{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 250px;
+}
+@media only  screen  and (max-width: 968px){
+    .RightSide{
+        display:none
+    }
 }
