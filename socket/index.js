@@ -19,27 +19,29 @@ io.on("connection", (socket) => {
                 socketId: socket.id
             })
         }
-        console.log('connected users', activeUsers)
         io.emit('get-users', activeUsers)
 
+    })
+
+    socket.on("disconnect", ()=>{
+        //remove user from active users
+        activeUsers = activeUsers.filter((user)=> user.socketId !== socket.id)
+        console.log("User Disconnected"  , activeUsers)
+        io.emit('get-users', activeUsers)
     })
 
     //send message
     socket.on('send-message', (data)=> {
         const {receiverId} = data
         const user = activeUsers.find((user) => user.userId === receiverId)
-        console.log('sending towards the : ', receiverId)
-        console.log('data', data)
+        console.log('sending from socket to : ', receiverId)
+        console.log('data:', data)
         if(user){
             io.to(user.socketId).emit("receive-message", data)
         }
     })
 
-    socket.on("disconnect", ()=>{
-        activeUsers = activeUsers.filter((user)=> user.socketId !== socket.id)
-        console.log("User Disconnected"  , activeUsers)
-        io.emit('get-users', activeUsers)
-    })
+    
 
 
 })

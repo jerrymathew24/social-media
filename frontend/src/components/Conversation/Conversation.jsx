@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { getUser } from "../../api/UserRequest.js";
 
-const Conversation = ({ data, currentUserId }) => {
+const Conversation = ({ data, currentUserId , online }) => {
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
@@ -23,7 +23,9 @@ const Conversation = ({ data, currentUserId }) => {
     <>
       <div className="follower conversation">
         <div className="">
-          <div className="online-dot"></div>
+          <div >
+            {online  && <div className="online-dot"></div> }
+          </div>
           <img
             src={
               userData?.profilePicture
@@ -38,7 +40,9 @@ const Conversation = ({ data, currentUserId }) => {
             <span>
               {userData?.firstname} {userData?.lastname}
             </span>
-            <span>Online</span>
+            <span style={{color: "#51e200"}}>
+              {online ? "Online" : "Offline"}
+            </span>
           </div>
         </div>
       </div>

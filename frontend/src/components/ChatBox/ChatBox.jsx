@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useEffect } from 'react'
 import { addMessage,  getMessages } from '../../api/MessageRequests'
 import { getUser } from '../../api/UserRequest'
@@ -7,10 +7,13 @@ import moment from 'moment'
 import InputEmoji from 'react-input-emoji'
 
 const ChatBox = ({chat, currentUser, setSendMessage, receiveMessage }) => {
+
     const [userData, setUserData] = useState(null)
     const [messages, setMessages] = useState([])
     const [newMessage, setNewMessage] = useState('')
+    const scroll = useRef()
 
+    const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
 
         //fetching data for header of chatBox
         useEffect(()=>{
@@ -62,7 +65,7 @@ const ChatBox = ({chat, currentUser, setSendMessage, receiveMessage }) => {
 
  // to chat in real time ----- send message to socket server
  const receiverId = chat.members.find((id) => id !== currentUser)
- setSendMessage({...messages, receiverId})
+ setSendMessage({...message, receiverId})
  
 
       //send message to database
@@ -71,7 +74,7 @@ const ChatBox = ({chat, currentUser, setSendMessage, receiveMessage }) => {
         const {data}   = await addMessage(message)
         setMessages([...messages, data])
         setNewMessage('')
-      } catch (error) {
+      } catch  {
         console.log('error')
       }
     }
@@ -81,12 +84,15 @@ const ChatBox = ({chat, currentUser, setSendMessage, receiveMessage }) => {
     //to receive message from parent component
     useEffect(()=>{
 
-      if(receiveMessage !== null  && receiveMessage?.chatId === chat?._id)
+      if(receiveMessage !== null  && receiveMessage?.chatId === chat._id)
       setMessages([...messages, receiveMessage])
 
     },[receiveMessage])
 
-
+//always scroll to last message
+useEffect(()=>{
+  scroll.current?.scrollIntoView({ behavior: 'smooth' })
+},[messages])
 
 
 
@@ -102,8 +108,8 @@ const ChatBox = ({chat, currentUser, setSendMessage, receiveMessage }) => {
           <img
             src={
               userData?.profilePicture
-                ? process.env.REACT_APP_PUBLIC_FOLDER + userData.profilePicture
-                : process.env.REACT_APP_PUBLIC_FOLDER + "defaultProfile.png"
+                ? serverPublic + userData.profilePicture
+                : serverPublic + "defaultProfile.png"
             }
             alt=""
             className="followerImage"
@@ -122,16 +128,17 @@ const ChatBox = ({chat, currentUser, setSendMessage, receiveMessage }) => {
         {/* chat box messages */}
 
         <div className="chat-body">
-            {messages.map((message)=>(
+            {messages.map((message)=>{
+            return(
               <>
-              <div className= {message.senderId === currentUser ? "message own" : "message"} >
+              <div ref = {scroll} className= {message.senderId === currentUser ? "message own" : "message"} >
               
-                      <span>{message.text}</span>{" "}
+                      <span>{message.text}</span>
                       <span>{moment(message.createdAt).fromNow()}</span>
                      
               </div>
               </>
-            ))}
+            )})}
         </div>
 
         {/* chat sender */}
