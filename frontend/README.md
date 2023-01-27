@@ -57,3 +57,8 @@ chats displayed
 
 message input created
 
+frontend completed
+
+-----------------------------------------------------------------------
+
+socket.io connection established on client side

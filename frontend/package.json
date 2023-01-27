@@ -33,7 +33,7 @@
     "redux-thunk": "^2.4.1",
     "remixicon": "^2.5.0",
     "scrollreveal": "^4.0.9",
-    "socket.io-client": "^4.5.3",
+    "socket.io-client": "^4.5.4",
     "styled-components": "^5.3.6",
     "web-vitals": "^2.1.0"
   },

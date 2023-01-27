@@ -11,12 +11,47 @@ import Conversation from "../../components/Conversation/Conversation.jsx";
 import LogoSearch from "../../components/LogoSearch/LogoSearch.jsx";
 import "./Chat.css";
 import ChatBox from "../../components/ChatBox/ChatBox.jsx";
+import { io } from 'socket.io-client'
+import { useRef } from "react";
+
+
+
+
 
 const Chat = () => {
   const { user } = useSelector((state) => state.authReducer.authData);
 
   const [chats, setChats] = useState([]);
   const [currentChat, setCurrentChat] = useState(null)
+  const [onlineUsers, setOnlineUsers] = useState([])
+  const [sendMessage, setSendMessage] = useState(null)
+  const [receiveMessage, setReceiveMessage] = useState(null)
+  const socket = useRef()
+
+  //sending message to socket server
+  useEffect(()=>{
+    if(sendMessage !== null){
+      socket.current.emit('send-message', sendMessage)
+    }
+  })
+
+// subscribing socket.io and get the online users
+  useEffect(()=> {
+    socket.current = io('http://localhost:8800')
+    socket.current.emit('new-user-add', user._id )
+    socket.current.on('get-users', (users)=> {
+      setOnlineUsers(users)
+    })
+  }, [user])
+
+
+//receive message from socket server
+useEffect(()=>{
+  socket.current.on('receive-message', (data)=> {
+    setReceiveMessage(data)
+  })
+},[])
+
 
   // Get the chat in chat section
   useEffect(() => {
@@ -65,7 +100,7 @@ const Chat = () => {
           </div>
           </div>
           {/*  chat body */}
-          <ChatBox chat= {currentChat} currentUser = {user._id} />
+          <ChatBox chat= {currentChat} currentUser = {user._id}  setSendMessage = {setSendMessage} receiveMessage = {receiveMessage} />
         
       </div>
     </div>

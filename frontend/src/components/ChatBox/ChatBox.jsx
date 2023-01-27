@@ -1,42 +1,41 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
-import { getMessages } from '../../api/MessageRequests'
+import { addMessage,  getMessages } from '../../api/MessageRequests'
 import { getUser } from '../../api/UserRequest'
 import "./ChatBox.css";
 import moment from 'moment'
 import InputEmoji from 'react-input-emoji'
 
-const ChatBox = ({chat, currentUser}) => {
+const ChatBox = ({chat, currentUser, setSendMessage, receiveMessage }) => {
     const [userData, setUserData] = useState(null)
     const [messages, setMessages] = useState([])
     const [newMessage, setNewMessage] = useState('')
 
-    //fetching data for header of chatBox
-    useEffect(()=>{
+
+        //fetching data for header of chatBox
+        useEffect(()=>{
         
-    const userId = chat?.members?.find((id)=>id!==currentUser)
-    const getUserData = async ()=> {
-        try
-        {
-            const {data} =await getUser(userId)
-           setUserData(data)
-           console.log(data,'setuserdata')
-        }
-        catch(error)
-        {
-          console.log(error)
-        }
-      }
-      if(chat !== null) getUserData()
-    },[chat, currentUser])
-
-
+          const userId = chat?.members?.find((id)=>id!==currentUser)
+          const getUserData = async ()=> {
+              try
+              {
+                  const {data} =await getUser(userId)
+                 setUserData(data)
+              }
+              catch(error)
+              {
+                console.log(error)
+              }
+            }
+            if(chat !== null) getUserData()
+          },[chat, currentUser])
+      
+ 
     //fetching data for messages
     useEffect(()=>{
       const fetchMessages = async ()=>{
         try {
           const {data} = await getMessages(chat._id)
-          console.log(data)
           setMessages(data)
         } catch (error) {
           console.log(error)
@@ -45,9 +44,53 @@ const ChatBox = ({chat, currentUser}) => {
       if(chat !== null) fetchMessages()
     }, [chat])
 
+
     const handleChange = (newMessage)=> {
       setNewMessage(newMessage)
+    }    
+    
+ 
+    //send message
+
+    const handleSend = async (e)=>{
+      e.preventDefault()
+      const message = {
+        senderId : currentUser,
+        text : newMessage,
+        chatId : chat._id
+      }   
+
+ // to chat in real time ----- send message to socket server
+ const receiverId = chat.members.find((id) => id !== currentUser)
+ setSendMessage({...messages, receiverId})
+ 
+
+      //send message to database
+
+      try {
+        const {data}   = await addMessage(message)
+        setMessages([...messages, data])
+        setNewMessage('')
+      } catch (error) {
+        console.log('error')
+      }
     }
+
+   
+
+    //to receive message from parent component
+    useEffect(()=>{
+
+      if(receiveMessage !== null  && receiveMessage?.chatId === chat?._id)
+      setMessages([...messages, receiveMessage])
+
+    },[receiveMessage])
+
+
+
+
+
+
   return (
     <>
     <div className="ChatBox-container">
@@ -95,7 +138,7 @@ const ChatBox = ({chat, currentUser}) => {
         <div className="chat-sender">
           <div className="">+</div>
           <InputEmoji value = {newMessage} onChange = {handleChange} />
-          <div className="send-button button">
+          <div className="send-button button" onClick={handleSend} >
             Send
           </div>
         </div>
